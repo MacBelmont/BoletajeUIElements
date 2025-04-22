@@ -1,6 +1,9 @@
+import com.android.build.gradle.internal.utils.createPublishingInfoForApp
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("maven-publish")
 }
 
 android {
@@ -57,11 +60,28 @@ dependencies {
 
     implementation(libs.androidx.material3.android)
     //Exoplayer
-    implementation ("com.google.android.exoplayer:exoplayer-core:2.19.1")
-    implementation ("com.google.android.exoplayer:exoplayer-ui:2.19.1")
+    implementation("com.google.android.exoplayer:exoplayer-core:2.19.1")
+    implementation("com.google.android.exoplayer:exoplayer-ui:2.19.1")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.ui.tooling)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
+                groupId = "com.github.macbelmont"
+                artifactId = "BoletajeUIElements"
+                version = "1.0"
+
+                afterEvaluate {
+                    from(components["release"])
+                }
+            }
+        }
+    }
 }
