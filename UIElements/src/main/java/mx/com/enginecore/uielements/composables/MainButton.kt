@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -55,7 +56,6 @@ fun MainButton(
     } else {
         MaterialTheme.colorScheme.onPrimary
     }
-
     Button(
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
@@ -74,12 +74,16 @@ fun MainButton(
     ) {
         if (!isLoading) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+                modifier = Modifier,
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 if (leadingImage != null || leadingIcon != null) {
                     leadingImage?.let {
-                        MainImageContainer(modifier = Modifier.size(25.dp), imageData = leadingImage)
+                        MainImageContainer(
+                            modifier = Modifier.size(25.dp),
+                            imageData = leadingImage
+                        )
                     }
                     leadingIcon?.let {
                         Icon(
@@ -89,7 +93,7 @@ fun MainButton(
                             tint = contentColor
                         )
                     }
-                    Spacer(modifier = Modifier.width(16.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
                 }
                 Text(
                     text = text,
