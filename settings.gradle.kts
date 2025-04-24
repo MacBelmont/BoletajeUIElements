@@ -16,9 +16,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://jitpack.io")
     }
 }
 
 rootProject.name = "BoletajeUIElements"
 include(":app")
-include(":BoletajeUI")
+//include(":BoletajeUI")
+include(":UIElements")
